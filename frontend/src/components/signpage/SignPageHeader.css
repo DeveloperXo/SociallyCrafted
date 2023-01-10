@@ -1,0 +1,19 @@
+.SignPageHeader{
+    background-color: #174066;
+    height: 8vh;
+    display: flex;
+    position: fixed;
+    width: 100vw;
+}
+.SignPageHeader img{
+    height: 4vh;
+    margin-bottom: auto;
+    margin-top: auto;
+    margin-left: 40px;
+}
+@media (max-width:600px) {
+    .SignPageHeader img{
+        height: 4vh;
+        margin: auto;
+    }
+}

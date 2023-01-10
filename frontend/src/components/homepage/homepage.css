@@ -1,0 +1,33 @@
+.HomePageHeader{
+    background-color: #174066;
+    height: 8vh;
+    position: fixed;
+    width: 100vw;
+}
+.HomePageHeader .logo{
+    height: 4vh;
+    margin-bottom: auto;
+    margin-top: auto;
+    margin-left: 40px;
+}
+.categories{
+    margin-top: 9vh;
+}
+#search-box{
+    background:transparent;
+    color: white;
+    width: 40vw;
+    border: 1px solid rgb(203, 203, 203);
+    border-right: None;
+    border-radius: 10px 0px 0 10px;
+}
+
+#search-box ::placeholder{
+    color: white !important;
+    opacity: 1;
+}
+#search-button{
+    border: 1px solid rgb(203, 203, 203);
+    border-radius: 0px 10px 10px 0px;
+    border-left: None;
+}

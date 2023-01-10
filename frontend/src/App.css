@@ -1,0 +1,9 @@
+body{
+  margin: 0;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+#root {
+  width: 100%;
+  --main-color: #174066;
+  --other-color: #00D1FF;
+}
