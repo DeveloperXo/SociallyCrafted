@@ -1,0 +1,12 @@
+#cat-img{
+    box-shadow: 2px 4px 15px 5px rgba(0, 0, 0, 0.25);
+    margin: auto;
+    display: block;
+}
+#cat-text{
+    color: var(--main-color);
+    margin-top: 10px;
+    font-weight: bold;
+    font-size:large;
+    text-align: center;
+}

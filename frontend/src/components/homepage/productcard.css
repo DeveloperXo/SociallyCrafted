@@ -1,0 +1,19 @@
+.product-card{
+    color: black;
+    text-decoration: None;
+    
+}
+.product-stack{
+    margin-bottom: 30px;
+}
+.product-stack p{
+    margin-bottom: None;
+    font-size: small;
+    padding: 2px;
+}
+.product-stack h4{
+    background: -webkit-linear-gradient(96deg, var(--main-color),var(--other-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+}

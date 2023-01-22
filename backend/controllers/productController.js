@@ -37,6 +37,12 @@ exports.createProduct = catchAsyncErrors(async (req, res, next) => {
     });
   });
 
-exports.getAllProducts = (req,res) =>{
-    res.status(200).json({message:"fine"});
-} 
+  //get all products
+exports.getAllProducts = catchAsyncErrors(async(req,res) =>{
+  const products = await Product.find();
+
+    res.status(200).json({
+      success: true,
+      products,
+    });
+} )

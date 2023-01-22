@@ -12,6 +12,7 @@ function App() {
       <Routes>
         <Route path='/' element={<SignPage/>}/>
         <Route path='/home/:id' element={<HomePage/>}/>
+        <Route path='/seller/:id' element={<HomePage/>}/>
       </Routes>
       </BrowserRouter>
     </div>
