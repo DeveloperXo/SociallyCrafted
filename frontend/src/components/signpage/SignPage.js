@@ -17,13 +17,15 @@ export default function SignPage(params) {
       <Container fluid style={{ "marginTop": "10vh" }}>
     
         <Row className="p-5">
-          <Col >
+          <Col lg={6} md={6} sm={10}>
             <CustomerForm />
           </Col>
           <Col>
           <img style={{
             width: "40vw"
-          }} src={customerHeroImage} alt='hero' />
+          }} src={customerHeroImage} 
+          id="customerHeroImage"
+          alt='hero' />
           </Col>
         </Row>
 
@@ -31,9 +33,11 @@ export default function SignPage(params) {
           <Col>
           <img style={{
             width: "40vw"
-          }} src={sellerHeroImage} alt='hero' />
+          }} src={sellerHeroImage}
+          id = "sellerHeroImage"
+           alt='hero' />
           </Col>
-          <Col>
+          <Col lg={6} md={6} sm={10}>
           <SellerForm />
           </Col>
         </Row>

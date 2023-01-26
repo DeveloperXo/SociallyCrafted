@@ -1,18 +1,18 @@
 const ErrorHandler = require('../utils/errorhandler');
 const catchAsyncErrors = require('../middleware/catchAsyncErrors');
 
-const Customer = require('../models/customerModel');
+const Seller = require('../models/sellerModel');
 
-exports.registerCustomer = catchAsyncErrors( async(req,res,next)=>{
+exports.registerSeller = catchAsyncErrors( async(req,res,next)=>{
     const {name, email, password} = req.body;
 
-    const customer = await Customer.create({
+    const seller = await Seller.create({
         name,
         email,
         password
     });
 
-    const token = customer.getJWTToken();
+    const token = seller.getJWTToken();
 
     res.status(201).json({
         success: true,
@@ -21,19 +21,20 @@ exports.registerCustomer = catchAsyncErrors( async(req,res,next)=>{
 })
 
 //login
-exports.loginCustomer = catchAsyncErrors(async(req,res,next)=>{
+exports.loginSeller = catchAsyncErrors(async(req,res,next)=>{
 
     const {email,password} = req.body;
-    const customer = await Customer.findOne({email: email}).select("+password");
-    console.log(customer);
-    if(!customer){
+    const seller = await Seller.findOne({email}).select("+password");
+    console.log(seller);
+    if(!seller){
         return next(new ErrorHandler("Invalid email or password",401))
     }
-    const isPasswordMatched = await customer.comparePassword(password);
+    const isPasswordMatched = await seller.comparePassword(password);
+    
     if(!isPasswordMatched){
         return next(new ErrorHandler("Invalid email or password",401))
     }
-    const token = customer.getJWTToken();
+    const token = seller.getJWTToken();
 
     res.status(200).json({
         success: true,

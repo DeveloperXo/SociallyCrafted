@@ -17,3 +17,11 @@
         margin: auto;
     }
 }
+@media (max-width:700px) {
+    #customerHeroImage{
+        display: none;
+    }
+    #sellerHeroImage{
+        display: none;
+    }
+}

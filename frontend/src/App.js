@@ -4,6 +4,7 @@ import SignPage from "./components/signpage/SignPage";
 import HomePage from './components/homepage/HomePage';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import SellerDashboard from './components/sellerdashboard/sellerdashboard';
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
       <Routes>
         <Route path='/' element={<SignPage/>}/>
         <Route path='/home/:id' element={<HomePage/>}/>
-        <Route path='/seller/:id' element={<HomePage/>}/>
+        <Route path='/seller/:id' element={<SellerDashboard/>}/>
       </Routes>
       </BrowserRouter>
     </div>

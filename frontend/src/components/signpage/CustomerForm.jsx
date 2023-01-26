@@ -29,14 +29,16 @@ export default function CustomerForm(params) {
       [name]: value
       })
     }
-  function registerHandler(params) {
-    axios.post("http://localhost:4000/register", rcustomer )
+  function registerHandler(e) {
+    e.preventDefault();
+
+    axios.post("http://localhost:4000/customer/register", rcustomer )
     .then(res=>console.log(res)).catch(function (error) {
       console.log(error);
     })
   }
   function loginHandler(params) {
-    axios.post("http://localhost:4000/login", lcustomer )
+    axios.post("http://localhost:4000/customer/login", lcustomer )
     .then(res=>console.log(res)).catch(function (error) {
       console.log(error);
     })
@@ -49,7 +51,7 @@ export default function CustomerForm(params) {
             Welcome Back!
           </h2>
           <p className="text-muted mb-20">Let's get started</p>
-          <Form action="#">
+          <Form action="#" >
             <Form.Group className="mb-3" >
               <Form.Label>Email address</Form.Label>
               <Form.Control
@@ -109,7 +111,7 @@ export default function CustomerForm(params) {
             Create an account
           </h2>
           <p className="text-muted mb-20">Let's get started</p>
-          <Form action= {`/home/${rcustomer.name}`}>
+          <Form  onSubmit={registerHandler}>
             <Form.Group className="mb-3" >
               <Form.Label>Name</Form.Label>
               <Form.Control
@@ -158,7 +160,6 @@ export default function CustomerForm(params) {
               }}
               variant="primary"
               type="submit"
-              onClick={registerHandler}
             >
               Sign Up
             </Button>

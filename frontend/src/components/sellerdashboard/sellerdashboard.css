@@ -1,0 +1,13 @@
+.sellerHeader{
+    background-color: #174066;
+    height: 8vh;
+    position: fixed;
+    width: 100vw;
+}
+
+.sellerHeader .logo{
+    height: 4vh;
+    margin-bottom: auto;
+    margin-top: auto;
+    margin-left: 40px;
+}
