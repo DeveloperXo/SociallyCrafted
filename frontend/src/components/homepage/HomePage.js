@@ -6,8 +6,21 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import ProductFilters from "./ProductFilters";
 
+import { getProduct } from "../../actions/productAction";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+
 export default function HomePage() {
-  const products = [
+  const dispatch = useDispatch();
+  const {products } = useSelector(
+    (state) => state.products
+  );
+  useEffect(() => {
+    dispatch(getProduct());
+  }, [dispatch]);
+
+  /*
+  products = [
     {
       name: "LED Lights",
       description: "Rustic Wall Hanging Jars with LED lights Handmade Wall Art Hanging Design Set of Two",
@@ -128,7 +141,7 @@ export default function HomePage() {
         category: "craft",
         Stock: 10,
       },
-  ];
+  ];*/
   return (
     <>
       <HomePageHeader />
@@ -138,22 +151,21 @@ export default function HomePage() {
       <Categories />
 
       <br />
-      <Container className="me-5 ms-5" >
+      <Container className="me-5 ms-5">
         <Row>
-            <Col lg={3}>
-            <ProductFilters/>
-            </Col>
-            <Col>
+          <Col lg={3}>
+            <ProductFilters />
+          </Col>
+          <Col>
             <Row>
-          {products.map((product) => (
-            <Col>
-              <ProductCard product={product} />
-            </Col>
-          ))}
+              {products && products.map((product) => (
+                <Col key={product._id}>
+                  <ProductCard product={product}  />
+                </Col>
+              ))}
+            </Row>
+          </Col>
         </Row>
-            </Col>
-        </Row>
-        
       </Container>
 
       <br />

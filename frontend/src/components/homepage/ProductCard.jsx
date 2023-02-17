@@ -5,7 +5,7 @@ import "./productcard.css";
 
 export default function ProductCard(props) {
   return (
-    <Link className="product-card">
+    <Link className="product-card" to={`/product/${props.product._id}`}>
       <Stack className="product-stack" gap={1}>
         <img
           src={props.product.images[0].url}
