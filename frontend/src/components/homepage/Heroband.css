@@ -1,0 +1,12 @@
+#hero-cntnr{
+    background: linear-gradient(255.43deg, #0E7AA3 36.07%, #0C85AF 54.68%, #00D1FF 101.09%);
+    padding-left: 0;
+    padding-top: 0px;
+}
+#hero-image{
+    height: 50vh;
+    
+}
+#sh{
+    color: rgb(207, 207, 207);
+}

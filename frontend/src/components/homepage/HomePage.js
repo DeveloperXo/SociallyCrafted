@@ -1,24 +1,13 @@
 import Categories from "./Categories";
-import HomePageHeader from "./HomePageHeader";
-import ProductCard from "./ProductCard";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import ProductFilters from "./ProductFilters";
+import { Link } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 
-import { getProduct } from "../../actions/productAction";
-import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
+import Heroband from "./Heroband";
+import FeaturedProducts from "./FeaturedProducts";
+
+import SignPageHeader from "../signpage/SignPageHeader";
 
 export default function HomePage() {
-  const dispatch = useDispatch();
-  const {products } = useSelector(
-    (state) => state.products
-  );
-  useEffect(() => {
-    dispatch(getProduct());
-  }, [dispatch]);
-
   /*
   products = [
     {
@@ -144,30 +133,33 @@ export default function HomePage() {
   ];*/
   return (
     <>
-      <HomePageHeader />
+      <SignPageHeader />
       <br />
       <br />
-      <br />
+      <Heroband />
       <Categories />
+      <br />
+      <br />
+      <FeaturedProducts />
+      <div className="mx-auto text-center">
+        <Link  to={"/products"}>
+          <Button
+            className="mx-auto"
+            style={{
+
+              width: "10rem",
+              borderRadius: "0",
+              marginLeft: "1000px",
+              marginRight: "1000px"
+            }}
+            variant="outline-dark"
+          >
+            View all Products
+          </Button>
+        </Link>
+      </div>
 
       <br />
-      <Container className="me-5 ms-5">
-        <Row>
-          <Col lg={3}>
-            <ProductFilters />
-          </Col>
-          <Col>
-            <Row>
-              {products && products.map((product) => (
-                <Col key={product._id}>
-                  <ProductCard product={product}  />
-                </Col>
-              ))}
-            </Row>
-          </Col>
-        </Row>
-      </Container>
-
       <br />
     </>
   );

@@ -8,6 +8,7 @@ import SellerDashboard from './components/sellerdashboard/sellerdashboard';
 import ProductPage from './components/productpage/ProductPage';
 import SellerPage from './components/sellerpage/SellerPage';
 import DetailsPage from './components/detailspage/DetailsPage';
+import AllProducts from "./components/allpoductspage/AllProducts"
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path='/' element={<SignPage/>}/>
         <Route path='/home/:id' element={<HomePage/>}/>
         <Route path='/product/:id' element={<ProductPage/>}/>
+        <Route path='/products' element={<AllProducts/>}/>
         <Route path='/seller/:name' element={<SellerPage/>}/>
         <Route path='/filldetails' element={<DetailsPage/>}/>
         <Route path='/dashboard/seller/:id' element={<SellerDashboard/>}/>

@@ -16,6 +16,8 @@ export default function SignPage(params) {
       <br></br>
       <Container fluid style={{ "marginTop": "10vh" }}>
     
+    <h1 className="text-center" style={{color:"var(--main-color)"}}>Are you a Customer looking to buy something Authentic?</h1>
+    <h3 className="text-center" style={{color:"#0E7AA3"}}>We've got you covered...</h3>
         <Row className="p-5">
           <Col lg={6} md={6} sm={10}>
             <CustomerForm />
@@ -29,7 +31,9 @@ export default function SignPage(params) {
           </Col>
         </Row>
 
-        <Row className="p-5">
+        <h1 className="text-center" style={{color:"var(--main-color)"}}>Are you a seller trying to establish your brand?</h1>
+    <h3 className="text-center" style={{color:"#0E7AA3"}}>We've got you covered...</h3>
+        <Row className="p-5 pb-0">
           <Col>
           <img style={{
             width: "40vw"

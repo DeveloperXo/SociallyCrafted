@@ -5,6 +5,7 @@ import "./productcard.css";
 
 export default function ProductCard(props) {
   return (
+    <div>
     <Link className="product-card" to={`/product/${props.product._id}`}>
       <Stack className="product-stack" gap={1}>
         <img
@@ -17,10 +18,11 @@ export default function ProductCard(props) {
         </h6>
         <div style={{display: "flex"}}>
           <ReactStars edit={false} color2={"#174066"} value={props.product.ratings} size={"18px"}/>
-          <p style={{ marginBottom: "0" }}> ({props.product.numOfReviews} ratings)</p>
+          <p style={{ marginBottom: "0" }}> ({props.product.numOfReviews} reviews)</p>
         </div>
         <h4>₹ {props.product.price}</h4>
       </Stack>
     </Link>
+    </div>
   );
 }
