@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getProductDetails } from "../../actions/productAction";
 import "./productPage.css";
 import Carousel from "react-bootstrap/Carousel";
@@ -13,8 +13,11 @@ import ReactStars from "react-stars";
 import ProductPageHeader from "./ProductPageHeader";
 import Recommendation from "./Recommendation";
 
+
 export default function ProductPage() {
   const { id } = useParams();
+
+  
 
   const dispatch = useDispatch();
   const { product } = useSelector((state) => state.productDetails);
@@ -27,15 +30,16 @@ export default function ProductPage() {
   console.log(product.images);
   return (
     <>
-      <ProductPageHeader/>
+      <ProductPageHeader />
       <div className="productContainer">
         <Row>
-          <Col lg={5} style={{"z-index":"-1"}}>
+          <Col lg={5} style={{ "z-index": "-1" }}>
             <Carousel fade>
               {product.images &&
                 product.images.map((image) => (
                   <Carousel.Item>
-                    <img style={{"z-index":"-1"}}
+                    <img
+                      style={{ "z-index": "-1" }}
                       className="d-block w-100"
                       src={image.url}
                       alt="slide"
@@ -50,15 +54,26 @@ export default function ProductPage() {
               <h2 style={{ color: "#174066" }}>{product.name}</h2>
 
               <h4>{product.description}</h4>
-              <br/>
-              <Link style={{"text-decoration":"none"}} to={`/seller/${product.seller}`}>
-              <h5 id="seller-link">@seller</h5>
+              <br />
+              <Link
+                style={{ "text-decoration": "none" }}
+                to={`/seller/${product.seller}`}
+              >
+                <h5 id="seller-link">@seller</h5>
               </Link>
-              <div style={{display: "flex"}}>
-          <ReactStars edit={false} color2={"#174066"} value={product.ratings} size={"18px"}/>
-          <p style={{ marginBottom: "0" }}> ({product.numOfReviews} reviews)</p>
-        </div>
-              <br/>
+              <div style={{ display: "flex" }}>
+                <ReactStars
+                  edit={false}
+                  color2={"#174066"}
+                  value={product.ratings}
+                  size={"18px"}
+                />
+                <p style={{ marginBottom: "0" }}>
+                  {" "}
+                  ({product.numOfReviews} reviews)
+                </p>
+              </div>
+              <br />
               <h3 className="price">₹ {product.price}</h3>
               <hr></hr>
               <div className="rsbuttons">
@@ -85,15 +100,17 @@ export default function ProductPage() {
                     padding: "8px",
                     width: "250px",
                   }}
+                  
                 >
                   Add to Cart
                 </button>
+                
               </div>
             </div>
           </Col>
         </Row>
       </div>
-      <Recommendation/>
+      <Recommendation />
     </>
   );
 }
