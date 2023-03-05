@@ -1,10 +1,25 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import axios from 'axios';
+import { useDispatch, useSelector } from "react-redux";
+import { clearErrors, login, } from "../../actions/userAction";
+//import { useAlert } from "react-alert";
+import Alert from 'react-bootstrap/Alert';
+import { useNavigate } from "react-router-dom";
 
 
-export default function CustomerForm(params) {
+export default function CustomerForm({}) {
+  const dispatch = useDispatch();
+  const [err, setErr] = useState(false);
+
+  //const alert = useAlert();
+  let history = useNavigate();
+
+  const { error, isAuthenticated } = useSelector(
+    (state) => state.user
+  );
+
   const [flag, setFlag] = useState(true);
   const [rcustomer, setRcustomer] = useState({
     name: "",
@@ -37,21 +52,31 @@ export default function CustomerForm(params) {
       console.log(error);
     })
   }
-  function loginHandler(params) {
-    axios.post("http://localhost:4000/customer/login", lcustomer )
-    .then(res=>console.log(res)).catch(function (error) {
-      console.log(error);
-    })
+  function loginHandler(e) {
+    e.preventDefault();
+    dispatch(login(lcustomer.email, lcustomer.password));
   }
+
+  useEffect(()=>{
+    if(error){
+      console.log(error);
+      setErr(true)
+      dispatch(clearErrors());
+    }
+    if (isAuthenticated) {
+      history('/home/123');
+    }
+  },[error,dispatch, history, isAuthenticated])
   return (
     <>
+    
       {!flag && (
         <div className="pe-sm-0 pe-lg-5">
           <h2 style={{ "fontFamily": "poppins", color: "var(--main-color)" }}>
             Welcome Back!
           </h2>
           <p className="text-muted mb-20">Let's get started</p>
-          <Form action="#" >
+          <Form onSubmit={loginHandler}>
             <Form.Group className="mb-3" >
               <Form.Label>Email address</Form.Label>
               <Form.Control
@@ -84,10 +109,14 @@ export default function CustomerForm(params) {
               }}
               variant="primary"
               
-              onClick={loginHandler}
+              type="submit"
             >
               Sign In
             </Button>
+            {err ? <Alert className="mt-2"  variant="secondary">
+          Invalid email or password!
+        </Alert> : <></>}
+            
             <p className="mt-3">
               Don't have an account? &nbsp;
               <button

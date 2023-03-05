@@ -81,3 +81,8 @@
 .carousel-inner{
   height:70vh
 }
+
+#seller-link{
+  color: #174066;
+  text-decoration: none;
+}

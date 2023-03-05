@@ -7,6 +7,7 @@ import Carousel from "react-bootstrap/Carousel";
 import { useParams } from "react-router-dom";
 import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
+import { Link } from "react-router-dom";
 
 import ReactStars from "react-stars";
 import ProductPageHeader from "./ProductPageHeader";
@@ -50,8 +51,9 @@ export default function ProductPage() {
 
               <h4>{product.description}</h4>
               <br/>
-              <span>@{product.seller}</span>
-
+              <Link style={{"text-decoration":"none"}} to={`/seller/${product.seller}`}>
+              <h5 id="seller-link">@seller</h5>
+              </Link>
               <div style={{display: "flex"}}>
           <ReactStars edit={false} color2={"#174066"} value={product.ratings} size={"18px"}/>
           <p style={{ marginBottom: "0" }}> ({product.numOfReviews} reviews)</p>
