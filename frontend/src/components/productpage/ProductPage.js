@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 import { getProductDetails } from "../../actions/productAction";
 import "./productPage.css";
 import Carousel from "react-bootstrap/Carousel";
@@ -77,6 +77,7 @@ export default function ProductPage() {
               <h3 className="price">₹ {product.price}</h3>
               <hr></hr>
               <div className="rsbuttons">
+                <Link to={"/confirm/order"}>
                 <button
                   style={{
                     borderRadius: "0",
@@ -91,6 +92,7 @@ export default function ProductPage() {
                 >
                   Buy Now
                 </button>
+                </Link>
                 <button
                   className="whitebutton"
                   style={{
