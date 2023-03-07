@@ -13,6 +13,11 @@ const customerSchema = new mongoose.Schema({
     password:{
         type:String,
         select: false
+    },
+    role: {
+        type: String,
+        enum: ['customer', 'admin', 'seller'],
+        default: 'customer'
     }
 })
 

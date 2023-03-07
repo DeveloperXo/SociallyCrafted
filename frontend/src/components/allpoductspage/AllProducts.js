@@ -33,6 +33,7 @@ function AllProducts() {
           </Col>
           <Col>
             <Row>
+              {console.log(products)}
               {products && products.map((product) => (
                 <Col key={product._id}>
                   <ProductCard product={product}  />

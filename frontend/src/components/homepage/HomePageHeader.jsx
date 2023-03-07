@@ -7,7 +7,15 @@ import ProfileIcon from "../../Images/User_fill.png"
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import CartIcon from "../../Images/Bag_alt.png";
 import SearchIcon from "../../Images/Search_alt.png";
+import { signOut } from "../../actions/userAction";
+// import { useNavigate } from "react-router-dom";
+
 export default function HomePageHeader(params) {
+  // let history = useNavigate();
+  // const handleLogout = () => {
+  //   localStorage.removeItem('token');
+  //   history('/')
+  // }
   return (
     <>
         <Stack className="HomePageHeader" direction="horizontal" >
@@ -26,7 +34,7 @@ export default function HomePageHeader(params) {
           <NavDropdown title={<img src={ProfileIcon} alt="profile icon" />} id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Profile</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
+              <NavDropdown.Item href="#action/3.4" onClick={signOut}>
                 Logout
               </NavDropdown.Item>
             </NavDropdown>

@@ -5,7 +5,7 @@
   "main": "backend/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node backend/server.js",
+    "start": "nodemon backend/server.js",
     "dev": "nodemon backend/server.js"
   },
   "author": "",
@@ -21,7 +21,9 @@
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.8.2",
     "nodemailer": "^6.8.0",
-    "nodemon": "^2.0.20",
     "validator": "^13.7.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.21"
   }
 }

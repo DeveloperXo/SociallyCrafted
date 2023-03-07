@@ -9,4 +9,5 @@ const connectdb =  () => {
     mongoose.set('strictQuery', true);
 }
 
+// CONNECTION_URL = "mongodb+srv://p-reetu:p-reetu1234@cluster0.ogxp4yz.mongodb.net/?retryWrites=true&w=majority"
 module.exports = connectdb

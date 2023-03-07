@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 import axios from 'axios';
 import { useDispatch, useSelector } from "react-redux";
 import { clearErrors, login, } from "../../actions/userAction";
-//import { useAlert } from "react-alert";
+// import { useAlert } from "react-alert";
 import Alert from 'react-bootstrap/Alert';
 import { useNavigate } from "react-router-dom";
 
@@ -13,7 +13,7 @@ export default function CustomerForm({}) {
   const dispatch = useDispatch();
   const [err, setErr] = useState(false);
 
-  //const alert = useAlert();
+  // const alert = useAlert();
   let history = useNavigate();
 
   const { error, isAuthenticated } = useSelector(
@@ -46,10 +46,14 @@ export default function CustomerForm({}) {
     }
   function registerHandler(e) {
     e.preventDefault();
-
     axios.post("http://localhost:4000/customer/register", rcustomer )
-    .then(res=>console.log(res)).catch(function (error) {
+    .then((res)=>{
+      console.log(res)
+      setFlag(false)
+      // history('home/123')
+    }).catch(function (error) {
       console.log(error);
+      setErr(true)
     })
   }
   function loginHandler(e) {
@@ -65,6 +69,7 @@ export default function CustomerForm({}) {
     }
     if (isAuthenticated) {
       history('/home/123');
+      console.log()
     }
   },[error,dispatch, history, isAuthenticated])
   return (
@@ -192,6 +197,9 @@ export default function CustomerForm({}) {
             >
               Sign Up
             </Button>
+            {err ? <Alert className="mt-2"  variant="secondary">
+                Invalid email or password!
+              </Alert> : <></>}
             <p className="mt-3">
               Already have an account? &nbsp;
               <button
