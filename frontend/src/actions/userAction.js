@@ -38,11 +38,10 @@ import {
     
   } from "../constants/userConstants";
   import axios from "axios";
-  // Login
-  export const login = (email, password) => async (dispatch) => {
+// Login
+export const login = (email, password) => async (dispatch) => {
     try {
       dispatch({ type: LOGIN_REQUEST });
-  
       const config = { headers: { "Content-Type": "application/json" } };
   
       const { data } = await axios.post(
@@ -79,16 +78,15 @@ import {
   };
 
   export const isUserLoggedIn = () => {
-    return async dispatch => {
+    return async ( dispatch ) => {
       const token = localStorage.getItem('token');
-      if(!token){
+      const user = JSON.parse(localStorage.getItem('user'))
+      if(!token || !user){
         dispatch({type: LOGIN_FAIL, payload: 'Login failed'})
         dispatch(clearErrors());
         console.log('Unauthorized')
       }
-      // if()
       else{
-        const user = JSON.parse(localStorage.getItem('user'));
         dispatch({
           type : LOGIN_SUCCESS,
           payload : token, user

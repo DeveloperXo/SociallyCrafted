@@ -16,7 +16,7 @@ export default function CustomerForm({}) {
   // const alert = useAlert();
   let history = useNavigate();
 
-  const { error, isAuthenticated } = useSelector(
+  const { error, isAuthenticated, user } = useSelector(
     (state) => state.user
   );
 
@@ -48,9 +48,7 @@ export default function CustomerForm({}) {
     e.preventDefault();
     axios.post("http://localhost:4000/customer/register", rcustomer )
     .then((res)=>{
-      console.log(res)
       setFlag(false)
-      // history('home/123')
     }).catch(function (error) {
       console.log(error);
       setErr(true)
@@ -69,7 +67,6 @@ export default function CustomerForm({}) {
     }
     if (isAuthenticated) {
       history('/home/123');
-      console.log()
     }
   },[error,dispatch, history, isAuthenticated])
   return (

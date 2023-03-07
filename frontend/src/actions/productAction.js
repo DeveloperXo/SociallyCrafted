@@ -42,7 +42,7 @@ export const getProduct =
 
       //let link = `/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}`;
 
-      let link =  "/products"
+      let link =  "http://localhost:4000/products"
       if (category) {
         link = `/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&ratings[gte]=${ratings}`;
       }
@@ -53,11 +53,13 @@ export const getProduct =
         type: ALL_PRODUCT_SUCCESS,
         payload: data,
       });
+      console.log('No errr')
     } catch (error) {
       dispatch({
         type: ALL_PRODUCT_FAIL,
         payload: error.response.data.message,
       });
+      console.log(error)
     }
   };
 
@@ -66,7 +68,7 @@ export const getProductDetails = (id) => async (dispatch) => {
     try {
       dispatch({ type: PRODUCT_DETAILS_REQUEST });
   
-      const { data } = await axios.get(`/product/${id}`);
+      const { data } = await axios.get(`http://localhost:4000/product/${id}`);
    
       dispatch({
         type: PRODUCT_DETAILS_SUCCESS,
