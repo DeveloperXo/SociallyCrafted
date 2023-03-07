@@ -38,7 +38,6 @@ import {
     
   } from "../constants/userConstants";
   import axios from "axios";
-  import { useNavigate } from "react-router-dom";
   // Login
   export const login = (email, password) => async (dispatch) => {
     try {
@@ -86,7 +85,9 @@ import {
         dispatch({type: LOGIN_FAIL, payload: 'Login failed'})
         dispatch(clearErrors());
         console.log('Unauthorized')
-      }else{
+      }
+      // if()
+      else{
         const user = JSON.parse(localStorage.getItem('user'));
         dispatch({
           type : LOGIN_SUCCESS,
