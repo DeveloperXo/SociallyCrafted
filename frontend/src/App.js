@@ -37,22 +37,12 @@ function App() {
       <BrowserRouter>
       <Routes>
         <Route path='/' element={<SignPage/>}/>
-<<<<<<< HEAD
         <Route path='/home/:id' element={isAuthenticated?<HomePage/>:<SignPage />}/>
         <Route path='/product/:id' element={isAuthenticated?<ProductPage/>: <SignPage />}/>
         <Route path='/products' element={isAuthenticated?<AllProducts/>: <SignPage />}/>
         <Route path='/seller/:id' element={isAuthenticated?<SellerPage/>: <SignPage />}/>
         <Route path='/filldetails' element={isAuthenticated?<DetailsPage/>: <SignPage />}/>
         <Route path='/dashboard/seller/:id' element={isAuthenticated?<SellerDashboard/>: <SignPage />}/>
-=======
-        <Route path='/home/:id' element={<HomePage/>}/>
-        <Route path='/product/:id' element={<ProductPage/>}/>
-        <Route path='/products' element={<AllProducts/>}/>
-        <Route path='/seller/:id' element={<SellerPage/>}/>
-        <Route path='/filldetails' element={<DetailsPage/>}/>
-        <Route path='/dashboard/seller/:id' element={<SellerDashboard/>}/>
-        <Route path='/confirm/order' element={<ConfirmOrder/>}/>
->>>>>>> myfriend/main
       </Routes>
       </BrowserRouter>
     </div>
