@@ -51,8 +51,19 @@ exports.loginCustomer = catchAsyncErrors(async(req,res,next)=>{
 })
 
 exports.requireLogin = (req, res, next) => {
-    const token = req.headers.authorization.split(" ")[1];
-    const customer = jwt.verify(token, process.env.JWT_SECRET)
-    req.customer = customer;
-    next();
+    try{
+        const token = req.headers.authorization.split(" ")[1];
+        console.log('token : '+token)
+        const verifyCustomer = jwt.verify(token, process.env.JWT_SECRET)
+        req.verifyCustomer = verifyCustomer;
+        console.log('Customer : ')
+        const customer =  verifyCustomer
+        next();
+    }catch(error){
+        console.log('Error : ')
+        console.log(error)
+        res.status(401).json({
+            message: 'Authentication failed - Invalid token'
+        })
+    }
 }

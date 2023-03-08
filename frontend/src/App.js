@@ -14,6 +14,7 @@ import ConfirmOrder from './components/confirmorder/ConfirmOrder';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearErrors, isUserLoggedIn } from './actions/userAction';
 import UserProfile from './components/profilepage/UserProfile';
+import Cart from './components/productpage/Cart';
 
 function App() {
   const dispatch = useDispatch();
@@ -42,11 +43,9 @@ function App() {
         <Route path='/seller/:id' element={isAuthenticated?<SellerPage/>: <SignPage />}/>
         <Route path='/filldetails' element={isAuthenticated?<DetailsPage/>: <SignPage />}/>
         <Route path='/dashboard/seller/:id' element={isAuthenticated?<SellerDashboard/>: <SignPage />}/>
-<<<<<<< HEAD
         <Route path='/confirm/order' element={isAuthenticated?<ConfirmOrder/>: <SignPage />}/>
         <Route path='/profile' element={isAuthenticated?<UserProfile/>: <SignPage />}/>
-=======
->>>>>>> myfriend/main
+        <Route path='/cart' element={isAuthenticated?<Cart/>: <SignPage />}/>
       </Routes>
       </BrowserRouter>
     </div>

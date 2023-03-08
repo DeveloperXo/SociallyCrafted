@@ -18,7 +18,14 @@ function AllProducts() {
   useEffect(() => {
     dispatch(getProduct());
   }, [dispatch]);
-
+  if(!products){
+    console.log('Error fetching products')
+  }
+  if(products){
+    if(products.length == 0){
+      console.log('No products to display')
+    }
+  }
   return (
     <>
     <HomePageHeader/>
@@ -33,12 +40,11 @@ function AllProducts() {
           </Col>
           <Col>
             <Row>
-              {console.log(products)}
-              {products && products.map((product) => (
+              {products&&products.length>0?products && products.map((product) => (
                 <Col key={product._id}>
                   <ProductCard product={product}  />
                 </Col>
-              ))}
+              )): <Row><b>No products to display</b></Row>}
             </Row>
           </Col>
         </Row>

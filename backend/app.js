@@ -18,6 +18,9 @@ app.use('/customer', customer);
 const seller = require('./routes/sellerRoute');
 app.use('/seller', seller);
 
+const addToCart = require('./routes/cartRoute');
+app.use('/cart', addToCart)
+
 app.use(errorMiddleware);
 
 

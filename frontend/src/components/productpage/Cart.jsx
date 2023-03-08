@@ -1,5 +1,7 @@
 import React from 'react';
 import CartItem from "./CartItem";
+import Container from 'react-bootstrap/esm/Container';
+import ProductPageHeader from './ProductPageHeader';
 
 function Cart() {
   const product = {
@@ -9,10 +11,12 @@ function Cart() {
     image: "https://images.meesho.com/images/products/109086297/6lsqi_256.webp"
   }
   return (
-    <div>
+    <>
+    <Container>
       <CartItem product={product}/>
       <CartItem product={product}/>
-    </div>
+    </Container>
+    </>
   )
 }
 

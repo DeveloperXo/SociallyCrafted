@@ -47,19 +47,21 @@ export const getProduct =
         link = `/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&ratings[gte]=${ratings}`;
       }
 
-      const { data } = await axios.get(link);
+      const token = localStorage.getItem('token')
+      const config = { headers: { "Content-Type": "application/json", "Authorization": `Bearer, ${token}` } };
+      const { data } = await axios.get(link, config);
 
       dispatch({
         type: ALL_PRODUCT_SUCCESS,
         payload: data,
       });
-      console.log('No errr')
+      console.log('No errr - products ation')
     } catch (error) {
+      console.log(error)
       dispatch({
         type: ALL_PRODUCT_FAIL,
-        payload: error.response.data.message,
+        payload: error.message,
       });
-      console.log(error)
     }
   };
 
@@ -67,9 +69,10 @@ export const getProduct =
 export const getProductDetails = (id) => async (dispatch) => {
     try {
       dispatch({ type: PRODUCT_DETAILS_REQUEST });
-  
-      const { data } = await axios.get(`http://localhost:4000/product/${id}`);
-   
+      const token = localStorage.getItem('token')
+      const config = { headers: { "Content-Type": "application/json", "Authorization": `Bearer, ${token}` } };
+
+      const { data } = await axios.get(`http://localhost:4000/product/${id}`, config);
       dispatch({
         type: PRODUCT_DETAILS_SUCCESS,
         payload: data.product,
