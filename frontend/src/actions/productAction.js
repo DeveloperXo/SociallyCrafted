@@ -36,56 +36,56 @@ import {
 // Get All Products
 export const getProduct =
   (keyword = "", currentPage = 1, price = [0, 25000], category, ratings = 0) =>
-  async (dispatch) => {
-    try {
-      dispatch({ type: ALL_PRODUCT_REQUEST });
+    async (dispatch) => {
+      try {
+        dispatch({ type: ALL_PRODUCT_REQUEST });
 
-      //let link = `/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}`;
+        //let link = `/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}`;
 
-      let link =  "http://localhost:4000/products"
-      if (category) {
-        link = `/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&ratings[gte]=${ratings}`;
+        let link = "http://localhost:4000/products"
+        if (category) {
+          link = `/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&ratings[gte]=${ratings}`;
+        }
+
+        const token = localStorage.getItem('token')
+        const config = { headers: { "Content-Type": "application/json", "Authorization": `Bearer, ${token}` } };
+        const { data } = await axios.get(link, config);
+
+        dispatch({
+          type: ALL_PRODUCT_SUCCESS,
+          payload: data,
+        });
+        console.log('No errr - products ation')
+      } catch (error) {
+        console.log(error)
+        dispatch({
+          type: ALL_PRODUCT_FAIL,
+          payload: error.message,
+        });
       }
-
-      const token = localStorage.getItem('token')
-      const config = { headers: { "Content-Type": "application/json", "Authorization": `Bearer, ${token}` } };
-      const { data } = await axios.get(link, config);
-
-      dispatch({
-        type: ALL_PRODUCT_SUCCESS,
-        payload: data,
-      });
-      console.log('No errr - products ation')
-    } catch (error) {
-      console.log(error)
-      dispatch({
-        type: ALL_PRODUCT_FAIL,
-        payload: error.message,
-      });
-    }
-  };
+    };
 
 // Get Products Details
 export const getProductDetails = (id) => async (dispatch) => {
-    try {
-      dispatch({ type: PRODUCT_DETAILS_REQUEST });
-      const token = localStorage.getItem('token')
-      const config = { headers: { "Content-Type": "application/json", "Authorization": `Bearer, ${token}` } };
+  try {
+    dispatch({ type: PRODUCT_DETAILS_REQUEST });
+    const token = localStorage.getItem('token')
+    const config = { headers: { "Content-Type": "application/json", "Authorization": `Bearer, ${token}` } };
 
-      const { data } = await axios.get(`http://localhost:4000/product/${id}`, config);
-      dispatch({
-        type: PRODUCT_DETAILS_SUCCESS,
-        payload: data.product,
-      });
-    } catch (error) {
-      dispatch({
-        type: PRODUCT_DETAILS_FAIL,
-        payload: error.response.data.message,
-      });
-    }
-  };
+    const { data } = await axios.get(`http://localhost:4000/product/${id}`, config);
+    dispatch({
+      type: PRODUCT_DETAILS_SUCCESS,
+      payload: data.product,
+    });
+  } catch (error) {
+    dispatch({
+      type: PRODUCT_DETAILS_FAIL,
+      payload: error.message,
+    });
+  }
+};
 
-  // Clearing Errors
+// Clearing Errors
 export const clearErrors = () => async (dispatch) => {
-    dispatch({ type: CLEAR_ERRORS });
-  };
+  dispatch({ type: CLEAR_ERRORS });
+};

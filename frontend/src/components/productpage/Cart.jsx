@@ -1,7 +1,6 @@
 import React from 'react';
 import CartItem from "./CartItem";
 import Container from 'react-bootstrap/esm/Container';
-import ProductPageHeader from './ProductPageHeader';
 
 function Cart() {
   const product = {
@@ -14,7 +13,7 @@ function Cart() {
     <>
     <Container>
       <CartItem product={product}/>
-      <CartItem product={product}/>
+      {/* <CartItem product={product}/> */}
     </Container>
     </>
   )

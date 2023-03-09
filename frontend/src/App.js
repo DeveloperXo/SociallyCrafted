@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { clearErrors, isUserLoggedIn } from './actions/userAction';
 import UserProfile from './components/profilepage/UserProfile';
 import Cart from './components/productpage/Cart';
+import { updateCart } from './actions/cartAction';
 
 function App() {
   const dispatch = useDispatch();
@@ -30,6 +31,10 @@ function App() {
       dispatch(clearErrors())
     }
   }, [isAuthenticated, error])
+
+  useEffect(() => {
+    dispatch(updateCart())
+  })
 
 
   return (
