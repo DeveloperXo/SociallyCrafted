@@ -1,8 +1,10 @@
 const express = require('express');
-const { addItemToCart} = require('../controllers/cartController');
+const { addItemToCart, getCartItems, removeCartItems } = require('../controllers/cartController');
 const { requireLogin } = require('../controllers/customerController')
 const router = express.Router();
 
-router.get('/add-to-cart', requireLogin, addItemToCart);
+router.post('/add-to-cart', requireLogin, addItemToCart);
+router.post('/getCartItems', requireLogin, getCartItems);
+router.post('/removeItem', requireLogin, removeCartItems);
 
 module.exports = router;

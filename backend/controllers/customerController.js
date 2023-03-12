@@ -53,11 +53,10 @@ exports.loginCustomer = catchAsyncErrors(async(req,res,next)=>{
 exports.requireLogin = (req, res, next) => {
     try{
         const token = req.headers.authorization.split(" ")[1];
-        console.log('token : '+token)
-        const verifyCustomer = jwt.verify(token, process.env.JWT_SECRET)
-        req.verifyCustomer = verifyCustomer;
-        console.log('Customer : ')
-        const customer =  verifyCustomer
+        console.log('token : '+JSON.stringify(token))
+        const customer = jwt.verify(token, process.env.JWT_SECRET)
+        req.customer = customer;
+        console.log('Customer : ',customer)
         next();
     }catch(error){
         console.log('Error : ')

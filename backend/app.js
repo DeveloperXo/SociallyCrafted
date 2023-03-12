@@ -21,6 +21,12 @@ app.use('/seller', seller);
 const addToCart = require('./routes/cartRoute');
 app.use('/cart', addToCart)
 
+const getCartItems = require('./routes/cartRoute');
+app.use('/cart', getCartItems)
+
+const removeCartItem = require('./routes/cartRoute');
+app.use('/cart', removeCartItem)
+
 app.use(errorMiddleware);
 
 
