@@ -4,7 +4,7 @@ const { getAllProducts, createProduct, getProductDetails} = require('../controll
 const router = express.Router();
 
 router.get('/products' , requireLogin, getAllProducts);
-router.get('/product/:id', requireLogin ,getProductDetails);
+router.get('/product/:id', requireLogin, getProductDetails);
 router.post('/product/new', requireLogin ,createProduct);
 
 module.exports = router;

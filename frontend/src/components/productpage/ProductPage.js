@@ -4,6 +4,7 @@ import { getProductDetails } from "../../actions/productAction";
 import "./productPage.css";
 import Carousel from "react-bootstrap/Carousel";
 import { addToCart } from "../../actions/cartAction";
+import { buyProduct } from "../../actions/checkoutAction";
 
 import { useParams } from "react-router-dom";
 import Row from "react-bootstrap/esm/Row";
@@ -90,6 +91,12 @@ export default function ProductPage() {
                     width: "250px",
                     marginRight: "10px",
                   }}
+                  onClick= {() => {
+                  const { _id, name, price} = product;
+                  const qty = 1;
+                  const img = product.images[0].url;
+                  dispatch(buyProduct({_id, name, price, qty, img}))
+                }}
                 >
                   Buy Now
                 </button>
