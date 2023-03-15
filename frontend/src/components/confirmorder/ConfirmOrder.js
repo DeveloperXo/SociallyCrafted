@@ -6,52 +6,45 @@ import Col from 'react-bootstrap/Col';
 import Details from './Details';
 import CartDetails from './CartDetails';
 import OrderSummary from './OrderSummary';
+import { useSelector } from "react-redux";
+
 
 function ConfirmOrder() {
-    const products=[{
-        name: "LED Lights",
-        description: "Rustic Wall Hanging Jars with LED lights Handmade Wall Art Hanging Design Set of Two",
-        price: 599,
-        ratings: 3,
-        numOfReviews: 10,
-        images: [
-          {
-            public_id: 1,
-            url: "https://images.meesho.com/images/products/109086297/6lsqi_256.webp",
-          },
-        ],
-        category: "craft",
-        Stock: 10,
-      },
-      {
-          name: "LED Lights",
-          description: "Rustic Wall Hanging Jars with LED lights Handmade Wall Art Hanging Design Set of Two",
-          price: 599,
-          ratings: 5,
-          numOfReviews: 10,
-          images: [
-            {
-              public_id: 1,
-              url: "https://cdn.shopify.com/s/files/1/1305/2183/products/BulbLamp_23_1024x1024.jpg?v=1613467822",
-            },
-          ],
-          category: "craft",
-          Stock: 10,
-        }]
+
+  const singleProduct = useSelector((state) => state.checkout)
+  const { payload } = useSelector((state) => state.checkout.checkoutProducts)
+  const getProducts = () => {
+    let products = [];
+    Object.keys(payload).map((key) => {
+      products.push(payload[key])
+    })
+    console.log('Products', products)
+    return { products }
+    }
   return (
     <>
-    <ProductPageHeader/>
-    <br/><br/>
-    <br/><br/>
-    <Container>
+      <ProductPageHeader />
+      <br /><br />
+      <br /><br />
+      <Container>
         <Row>
-            <Col>
-            <Row> <Details/> </Row>
-            <Row> <CartDetails products={products}/> </Row>
-            </Col>
-            <Col lg={4}> <OrderSummary/> </Col>
+          <Col>
+            <Row> <Details /> </Row>
+            <h3 className='mt-5 mb-5'>Your items</h3>
+            <Row>
+              {payload ?
+                Object.keys(payload).map((key, index) => <CartDetails key={index} products={[payload[key]]} />) :
+                <CartDetails products={[singleProduct.checkoutProducts]} />}
+            </Row>
+          </Col>
+          <Col lg={4}>
+            {/* {payload ?  Object.keys(payload).map((key, index) => <OrderSummary  key={index} products={[payload[key]]} />) :
+              <OrderSummary products={[singleProduct.checkoutProducts]} />
+            } */}
+            {payload ? <OrderSummary products={getProducts().products} /> :  <OrderSummary products={[singleProduct.checkoutProducts]} />}
+          </Col>
         </Row>
-    </Container>
+      </Container>
     </>
   )
 }

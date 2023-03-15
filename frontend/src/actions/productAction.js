@@ -49,6 +49,7 @@ export const getProduct =
 
         const token = localStorage.getItem('token')
         const config = { headers: { "Content-Type": "application/json", "Authorization": `Bearer, ${token}` } };
+        // const config = { headers: { "Content-Type": "application/json"}};
         const { data } = await axios.get(link, config);
 
         dispatch({
