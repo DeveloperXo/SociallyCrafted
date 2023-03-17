@@ -99,6 +99,24 @@ function Recommendation() {
 
   const { id } = useParams();
 
+<<<<<<< HEAD
+     axios.get(`http://127.0.0.1:5000/recommendations?id=${id}`)
+      .then((res)=>{
+         console.log('products----', res.data.products)
+        //console.log(res.data.products)
+        res.data.products && res.data.products.map((ele) => {
+          if(ele.name){
+            products.push(ele)
+          }
+        })
+        
+      }).catch(function (error) {
+        console.log('error', error);
+      })
+
+    console.log('products', products)
+    
+=======
   axios
     .get(`http://127.0.0.1:5000/recommendations?id=${id}`)
     .then((res) => {
@@ -115,6 +133,7 @@ function Recommendation() {
     });
   console.log(products); 
  
+>>>>>>> add25f515179c0cf91b47e9c37ed6fecbf52cb78
   return (
     <>
       <Container>

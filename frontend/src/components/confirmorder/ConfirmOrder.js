@@ -12,13 +12,14 @@ import { useSelector } from "react-redux";
 function ConfirmOrder() {
 
   const singleProduct = useSelector((state) => state.checkout)
-  const { payload } = useSelector((state) => state.checkout.checkoutProducts)
+  const { payload } = useSelector((state) => state.checkout.checkoutProducts);
+  const address = useSelector((state) => state.orderDetails)
+  console.log('address----', address)
   const getProducts = () => {
     let products = [];
     Object.keys(payload).map((key) => {
       products.push(payload[key])
     })
-    console.log('Products', products)
     return { products }
     }
   return (
@@ -38,9 +39,6 @@ function ConfirmOrder() {
             </Row>
           </Col>
           <Col lg={4}>
-            {/* {payload ?  Object.keys(payload).map((key, index) => <OrderSummary  key={index} products={[payload[key]]} />) :
-              <OrderSummary products={[singleProduct.checkoutProducts]} />
-            } */}
             {payload ? <OrderSummary products={getProducts().products} /> :  <OrderSummary products={[singleProduct.checkoutProducts]} />}
           </Col>
         </Row>
