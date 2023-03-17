@@ -16,6 +16,9 @@ function OrderSummary(props) {
       subTotal = shippingCharges + productsTotalPrice;
       return { productsTotalPrice, shippingCharges, subTotal };
   }
+  function done(){
+    alert("Order placed successfully!!");
+  }
   return (
     <div style={{ padding: "20px" }}>
       <h3 className='text-center mb-3'>Order Summary</h3>
@@ -44,7 +47,7 @@ function OrderSummary(props) {
         />
       </div>
       <div style={{ display: "flex", "justify-content": "center" }}>
-        <Button className='mt-5' style={{
+        <Button className='mt-5' onClick={done} style={{
           borderRadius: "0",
           backgroundImage:
             "linear-gradient(96.83deg, #174066 6.48%, #00D1FF 162.22%)",
