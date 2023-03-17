@@ -95,20 +95,21 @@ function Recommendation() {
   
   const { id } = useParams();
 
-  axios.get(`http://127.0.0.1:5000/recommendations?id=${id}`)
-    .then((res)=>{
-       
-      //console.log(res.data.products)
-      res.data.products && res.data.products.map((ele) => {
-        if(ele.name){
-          products.push(ele)
-        }
+     axios.get(`http://127.0.0.1:5000/recommendations?id=${id}`)
+      .then((res)=>{
+         console.log('products----', res.data.products)
+        //console.log(res.data.products)
+        res.data.products && res.data.products.map((ele) => {
+          if(ele.name){
+            products.push(ele)
+          }
+        })
+        
+      }).catch(function (error) {
+        console.log('error', error);
       })
-      
-    }).catch(function (error) {
-      console.log(error);
-    })
-    console.log(products)
+
+    console.log('products', products)
     
   return (
     <>
