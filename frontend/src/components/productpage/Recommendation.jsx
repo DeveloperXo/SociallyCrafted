@@ -7,6 +7,10 @@ import axios from "axios";
 //import { ObjectId } from "mongodb";
 import { useParams } from "react-router-dom";
 
+import { Link } from "react-router-dom";
+import Stack from "react-bootstrap/Stack";
+import ReactStars from "react-stars";
+
 function Recommendation() {
   /*const products = [
     {
@@ -90,11 +94,12 @@ function Recommendation() {
       Stock: 10,
     },
   ];*/
-   var products = []
-    
-  
+  //var products = [];
+  const [products, setProducts] = useState([]);
+
   const { id } = useParams();
 
+<<<<<<< HEAD
      axios.get(`http://127.0.0.1:5000/recommendations?id=${id}`)
       .then((res)=>{
          console.log('products----', res.data.products)
@@ -111,23 +116,69 @@ function Recommendation() {
 
     console.log('products', products)
     
+=======
+  axios
+    .get(`http://127.0.0.1:5000/recommendations?id=${id}`)
+    .then((res) => {
+      //console.log(res.data.products)
+      res.data.products &&
+        res.data.products.map((ele) => {
+          if (ele.name) {
+            products.push(ele);
+          }
+        });
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  console.log(products); 
+ 
+>>>>>>> add25f515179c0cf91b47e9c37ed6fecbf52cb78
   return (
     <>
       <Container>
         <h4>Recommended Products</h4>
         <br />
-        <Row> 
-          {
-            products &&
-            products.map((product) => (
+        <Row>
+          {products &&
+            products.slice(0, 5).map((product) => (
               <Col key={product._id}>
-                <ProductCard product={product} />
+                <div>
+                  <Link
+                    className="product-card"
+                    to={`/product/${product._id}`}
+                  >
+                    <Stack className="product-stack" gap={1}>
+                      <img 
+                        src={product.images[0].url}
+                        alt={product.name}
+                        style={{ height: "200px", width: "200px" }}
+                      />
+                      <h6>
+                        <b>{product.name}</b>
+                      </h6>
+                      <div style={{ display: "flex" }}>
+                        <ReactStars
+                          edit={false}
+                          color2={"#174066"}
+                          value={product.ratings}
+                          size={"18px"}
+                        />
+                        <p style={{ marginBottom: "0" }}>
+                          {" "}
+                          ({product.numOfReviews} reviews)
+                        </p>
+                      </div> 
+                      <h4>₹ {product.price}</h4> 
+                    </Stack>
+                  </Link>
+                </div>
               </Col>
             ))}
         </Row>
       </Container>
     </>
   );
-} 
+}
 
 export default Recommendation;

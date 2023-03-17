@@ -23,6 +23,7 @@ function OrderSummary(props) {
       subTotal = shippingCharges + productsTotalPrice;
       return { productsTotalPrice, shippingCharges, subTotal };
   }
+<<<<<<< HEAD
 
   const handlePlaceOrder = () => {
     let totalAmount = getPrice().subTotal;
@@ -52,6 +53,10 @@ function OrderSummary(props) {
     setPMethod(event.target.id)
     event.target.checked = true
     console.log('event', pMethod)
+=======
+  function done(){
+    alert("Order placed successfully!!");
+>>>>>>> add25f515179c0cf91b47e9c37ed6fecbf52cb78
   }
   return (
     <div style={{ padding: "20px" }}>
@@ -84,7 +89,7 @@ function OrderSummary(props) {
         />
       </div>
       <div style={{ display: "flex", "justify-content": "center" }}>
-        <Button className='mt-5' style={{
+        <Button className='mt-5' onClick={done} style={{
           borderRadius: "0",
           backgroundImage:
             "linear-gradient(96.83deg, #174066 6.48%, #00D1FF 162.22%)",

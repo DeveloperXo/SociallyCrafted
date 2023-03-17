@@ -125,7 +125,8 @@ export default function ProductPage() {
           </Col>
         </Row>
       </div>
-      <Recommendation />
+      {product.numOfReviews != 0 ? <Recommendation /> : <br/>}
+      
     </>
   );
 }
