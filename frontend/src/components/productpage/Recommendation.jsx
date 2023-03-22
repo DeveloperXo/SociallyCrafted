@@ -91,7 +91,7 @@ function Recommendation() {
         },
       ],
       category: "craft",
-      Stock: 10,
+      Stock: 10, 
     },
   ];*/
   //var products = [];
@@ -125,24 +125,24 @@ function Recommendation() {
             products.slice(0, 5).map((product) => (
               <Col key={product._id}>
                 <div>
-                  <Link
+                  <Link 
                     className="product-card"
-                    to={`/product/${product._id}`}
+                    to={`/product/${product._id.$oid}`}
                   >
-                    <Stack className="product-stack" gap={1}>
-                      <img 
+                    <Stack className="product-stack" gap={1}> 
+                      <img   
                         src={product.images[0].url}
                         alt={product.name}
-                        style={{ height: "200px", width: "200px" }}
+                        style={{ height: "200px", width: "200px" }} 
                       />
-                      <h6>
+                      <h6> 
                         <b>{product.name}</b>
                       </h6>
                       <div style={{ display: "flex" }}>
                         <ReactStars
                           edit={false}
                           color2={"#174066"}
-                          value={product.ratings}
+                          value={product.rating}
                           size={"18px"}
                         />
                         <p style={{ marginBottom: "0" }}>

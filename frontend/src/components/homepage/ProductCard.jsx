@@ -17,7 +17,7 @@ export default function ProductCard(props) {
           <b>{props.product.name}</b>
         </h6>
         <div style={{display: "flex"}}>
-          <ReactStars edit={false} color2={"#174066"} value={props.product.ratings} size={"18px"}/>
+          <ReactStars edit={false} color2={"#174066"} value={props.product.rating} size={"18px"}/>
           <p style={{ marginBottom: "0" }}> ({props.product.numOfReviews} reviews)</p>
         </div>
         <h4>₹ {props.product.price}</h4>

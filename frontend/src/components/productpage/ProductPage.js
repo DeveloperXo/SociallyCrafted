@@ -67,7 +67,7 @@ export default function ProductPage() {
                 <ReactStars
                   edit={false}
                   color2={"#174066"}
-                  value={product && product.ratings}
+                  value={product && product.rating} 
                   size={"18px"}
                 />
                 <p style={{ marginBottom: "0" }}>
