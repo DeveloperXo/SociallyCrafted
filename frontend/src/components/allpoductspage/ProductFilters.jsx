@@ -8,10 +8,16 @@ export default function ProductFilters() {
         <Form.Check type="checkbox" label="Craft" />
       </Form.Group>
       <Form.Group className="mb-1" controlId="formBasicCheckbox">
-        <Form.Check type="checkbox" label="Clothing" />
+        <Form.Check type="checkbox" label="Women's Clothing" />
+      </Form.Group>
+      <Form.Group className="mb-1" controlId="formBasicCheckbox">
+        <Form.Check type="checkbox" label="Men's Clothing" />
       </Form.Group>
       <Form.Group className="mb-1" controlId="formBasicCheckbox">
         <Form.Check type="checkbox" label="Food" />
+      </Form.Group>
+      <Form.Group className="mb-1" controlId="formBasicCheckbox">
+        <Form.Check type="checkbox" label="Jewlry" />
       </Form.Group>
       <div>Price</div>
       <Form.Range />

@@ -8,6 +8,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import CartIcon from "../../Images/Bag_alt.png";
 import { useState } from "react";
 import Cart from "./Cart";
+import { Link } from "react-router-dom";
 
 export default function ProductPageHeader(params) {
   const [show, setShow] = useState(false);
@@ -33,7 +34,8 @@ export default function ProductPageHeader(params) {
                   </Offcanvas.Body>
                 </Offcanvas>
           <NavDropdown title={<img src={ProfileIcon} alt="profile icon" />} id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Profile</NavDropdown.Item>
+            <Link to="/profile" style={{textDecoration:"None"}}>
+              <NavDropdown.Item href="#action/3.1">Profile</NavDropdown.Item></Link>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action/3.4">
                 Logout
