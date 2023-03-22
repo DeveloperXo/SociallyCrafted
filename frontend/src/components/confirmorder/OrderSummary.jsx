@@ -1,13 +1,20 @@
 import Button from 'react-bootstrap/Button';
-import React from 'react'
+import React, { useState } from 'react'
 import Form from 'react-bootstrap/Form';
+import { useNavigate } from "react-router-dom";
+import { addOrder } from '../../actions/orderAction';
+import { useDispatch, useSelector } from "react-redux";
 
 function OrderSummary(props) {
+  const address = useSelector((state) => state.orderDetails.address)
+  console.log('990',address)
+  // let history = useNavigate();
+  const dispatch = useDispatch();
+
   const getPrice = () => {
     let productsTotalPrice = 0;
     let shippingCharges = 120;
     let subTotal = 0;
-    console.log('price', props.products)
       props.products.map((product) => {
         for (let i = 0; i < product.qty; i++) {
           productsTotalPrice += product.price;
@@ -16,8 +23,40 @@ function OrderSummary(props) {
       subTotal = shippingCharges + productsTotalPrice;
       return { productsTotalPrice, shippingCharges, subTotal };
   }
+<<<<<<< HEAD
+
+  const handlePlaceOrder = () => {
+    let totalAmount = getPrice().subTotal;
+    const items = props.products.map((product) => ({
+      productId: product._id,
+      payablePrice: product.price,
+      purchasedQty: product.qty
+   }));
+   if(address){
+     const payload = {
+      address: address,
+      totalAmount,
+      items,
+      paymentStatus: 'pending',
+      paymentType: 'cod'
+     }
+     console.log('payload', payload)
+     dispatch(addOrder(payload))
+   }
+   else{
+    alert('Please enter your address')
+   }
+   //  history('/orders/addOrder')
+  }
+  const [pMethod, setPMethod] = useState('cod')
+  const handlePaymentMethod = (event) => {
+    setPMethod(event.target.id)
+    event.target.checked = true
+    console.log('event', pMethod)
+=======
   function done(){
     alert("Order placed successfully!!");
+>>>>>>> add25f515179c0cf91b47e9c37ed6fecbf52cb78
   }
   return (
     <div style={{ padding: "20px" }}>
@@ -38,12 +77,15 @@ function OrderSummary(props) {
           id="cod"
           name="group1"
           label="Cash on Delivery"
+          onClick={handlePaymentMethod}
+          checked={true}
         />
         <Form.Check
           type='radio'
           name="group1"
-          id="ol"
+          id="onlinePay"
           label="Online payment"
+          onClick={handlePaymentMethod}
         />
       </div>
       <div style={{ display: "flex", "justify-content": "center" }}>
@@ -56,7 +98,7 @@ function OrderSummary(props) {
           padding: "10px",
           width: "250px",
           marginRight: "10px",
-        }} >Place Order</Button>
+        }} onClick={handlePlaceOrder}>Place Order</Button>
       </div>
 
     </div>

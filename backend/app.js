@@ -27,6 +27,9 @@ app.use('/cart', getCartItems)
 const removeCartItem = require('./routes/cartRoute');
 app.use('/cart', removeCartItem)
 
+const ordersRoute = require('./routes/ordersRoute');
+app.use('/orders', ordersRoute);
+
 app.use(errorMiddleware);
 
 
