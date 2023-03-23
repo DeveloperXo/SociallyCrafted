@@ -15,6 +15,7 @@ import ReactStars from "react-stars";
 import ProductPageHeader from "./ProductPageHeader";
 import Recommendation from "./Recommendation";
 import Button from "react-bootstrap/esm/Button";
+import FollowingSellers from "./FollowingSellers";
 
 
 export default function ProductPage() {
@@ -125,8 +126,8 @@ export default function ProductPage() {
           </Col>
         </Row>
       </div>
-      {product.numOfReviews != 0 ? <Recommendation /> : <br/>}
-      
+      {product.numOfReviews === 0 ?   <br/> : <Recommendation />}
+      <FollowingSellers/>
     </>
   );
 }
