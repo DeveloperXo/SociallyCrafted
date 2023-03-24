@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 function OrderSummary(props) {
   const address = useSelector((state) => state.orderDetails.address)
-  console.log('990', address)
   // let history = useNavigate();
   const dispatch = useDispatch();
 
@@ -52,6 +51,7 @@ function OrderSummary(props) {
     setPMethod(event.target.id)
     event.target.checked = true
     console.log('event', pMethod)
+
   }
   function done() {
     alert("Order placed successfully!!");
@@ -88,7 +88,7 @@ function OrderSummary(props) {
         />
       </div>
       <div style={{ display: "flex", "justify-content": "center" }}>
-        <Button className='mt-5' style={{
+        <Button className='mt-5'  style={{
           borderRadius: "0",
           backgroundImage:
             "linear-gradient(96.83deg, #174066 6.48%, #00D1FF 162.22%)",

@@ -47,7 +47,7 @@ function App() {
         <Route path='/products' element={isAuthenticated?<AllProducts/>: <SignPage />}/>
         <Route path='/seller/:id' element={isAuthenticated?<SellerPage/>: <SignPage />}/>
         <Route path='/filldetails' element={isAuthenticated?<DetailsPage/>: <SignPage />}/>
-        <Route path='/dashboard/seller/:id' element={isAuthenticated?<SellerDashboard/>: <SignPage />}/>
+        <Route path='/dashboard/seller' element={<SellerDashboard/>}/>
         <Route path='/confirm/order' element={isAuthenticated?<ConfirmOrder/>: <SignPage />}/>
         <Route path='/profile' element={isAuthenticated?<UserProfile/>: <SignPage />}/>
         <Route path='/cart' element={isAuthenticated?<Cart/>: <SignPage />}/>

@@ -5,7 +5,6 @@ const Seller = require('../models/sellerModel');
 
 exports.registerSeller = catchAsyncErrors( async(req,res,next)=>{
     const {name, email, password} = req.body;
-
     const seller = await Seller.create({
         name,
         email,
@@ -17,15 +16,16 @@ exports.registerSeller = catchAsyncErrors( async(req,res,next)=>{
     res.status(201).json({
         success: true,
         token,
+        seller
     })
 })
 
 //login
 exports.loginSeller = catchAsyncErrors(async(req,res,next)=>{
-
+    
     const {email,password} = req.body;
     const seller = await Seller.findOne({email}).select("+password");
-    console.log(seller);
+    console.log('seller',seller);
     if(!seller){
         return next(new ErrorHandler("Invalid email or password",401))
     }
@@ -39,5 +39,6 @@ exports.loginSeller = catchAsyncErrors(async(req,res,next)=>{
     res.status(200).json({
         success: true,
         token,
+        seller
     })
 })

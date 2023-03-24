@@ -1,22 +1,30 @@
 import SellerDashboardHeader from "./SellerDashboardHeader";
 import Container from "react-bootstrap/esm/Container";
+import SellerAuth from "./SellerAuth";
+import { useSelector } from "react-redux";
+import { isSellerCheck } from "../../actions/sellerAction";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 export default function SellerDashboard(params) {
-    const user = JSON.parse(localStorage.getItem('user'))
-    let isAdmin = false;
-    if(user.role === 'admin'){
-        isAdmin = true;
-    }
-    else{
-        isAdmin = false;
-    }
-    console.log(isAdmin)
-    return (
+    const dispatch = useDispatch();
+    const seller = JSON.parse(localStorage.getItem('seller'))
+    const { error, sellerAuth } = useSelector((state) => state.seller);
+    console.log('sellerAuth',sellerAuth, seller)
+    useEffect(() => {
+        if(sellerAuth){
+            console.log('Good - Seller Dashboard')
+        }
+        else{
+            dispatch(isSellerCheck)
+        }
+    }, [sellerAuth])
+    return ( 
         <>
         <SellerDashboardHeader/>
         <br /><br />
         <br /><br />
-        <Container>
-        {!isAdmin?<p><b>Unauthorized Access</b></p>: <>Welcome ADMIN</>}
+        <Container> 
+        {!sellerAuth?<SellerAuth />: <>Welcome ADMIN - {seller.name.toUpperCase()}</>}
         </Container>
         </>
     )

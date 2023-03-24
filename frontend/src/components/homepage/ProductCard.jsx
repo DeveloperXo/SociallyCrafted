@@ -9,7 +9,7 @@ export default function ProductCard(props) {
     <Link className="product-card" to={`/product/${props.product._id}`}>
       <Stack className="product-stack" gap={1}>
         <img
-          src={props.product.images[0].url}
+          src={props.product.images[0].url} 
           alt={props.product.name}
           style={{ height: "200px", width: "200px" }}
         />
@@ -17,7 +17,7 @@ export default function ProductCard(props) {
           <b>{props.product.name}</b>
         </h6>
         <div style={{display: "flex"}}>
-          <ReactStars edit={false} color2={"#174066"} value={props.product.ratings} size={"18px"}/>
+          <ReactStars edit={false} color2={"#174066"} value={props.product.rating} size={"18px"}/>
           <p style={{ marginBottom: "0" }}> ({props.product.numOfReviews} reviews)</p>
         </div>
         <h4>₹ {props.product.price}</h4>

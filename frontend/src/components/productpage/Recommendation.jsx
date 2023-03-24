@@ -12,26 +12,42 @@ import Stack from "react-bootstrap/Stack";
 import ReactStars from "react-stars";
 
 function Recommendation() {
+
   const [products, setProducts] = useState([]);
 
   const { id } = useParams();
 
-  axios.get(`http://127.0.0.1:5000/recommendations?id=${id}`)
+
+  // axios.get(`http://127.0.0.1:5000/recommendations?id=${id}`)
+  //   .then((res) => {
+  //     console.log('products----', res.data.products)
+  //     //console.log(res.data.products)
+  //     res.data.products && res.data.products.map((ele) => {
+  //       if (ele.name) {
+  //         products.push(ele)
+  //       }
+  //     })
+
+  //   }).catch(function (error) {
+  //     console.log('error', error);
+  //   })
+
+  axios
+    .get(`http://127.0.0.1:5000/recommendations?id=${id}`)
     .then((res) => {
-      console.log('products----', res.data.products)
       //console.log(res.data.products)
-      res.data.products && res.data.products.map((ele) => {
-        if (ele.name) {
-          products.push(ele)
-        }
-      })
-
-    }).catch(function (error) {
-      console.log('error', error);
+      res.data.products &&
+        res.data.products.map((ele) => {
+          if (ele.name) {
+            products.push(ele);
+          }
+        });
     })
-
-  console.log('products', products)
-
+    .catch(function (error) {
+      console.log(error);
+    });
+  console.log(products); 
+ 
   return (
     <>
       <Container>
@@ -42,24 +58,24 @@ function Recommendation() {
             products.slice(0, 5).map((product) => (
               <Col key={product._id}>
                 <div>
-                  <Link
+                  <Link 
                     className="product-card"
-                    to={`/product/${product._id}`}
+                    to={`/product/${product._id.$oid}`}
                   >
-                    <Stack className="product-stack" gap={1}>
-                      <img
+                    <Stack className="product-stack" gap={1}> 
+                      <img   
                         src={product.images[0].url}
                         alt={product.name}
-                        style={{ height: "200px", width: "200px" }}
+                        style={{ height: "200px", width: "200px" }} 
                       />
-                      <h6>
+                      <h6> 
                         <b>{product.name}</b>
                       </h6>
                       <div style={{ display: "flex" }}>
                         <ReactStars
                           edit={false}
                           color2={"#174066"}
-                          value={product.ratings}
+                          value={product.rating}
                           size={"18px"}
                         />
                         <p style={{ marginBottom: "0" }}>

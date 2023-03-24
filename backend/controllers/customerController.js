@@ -10,7 +10,6 @@ exports.registerCustomer = catchAsyncErrors( async(req,res,next)=>{
     const customer = await Customer.create({
         name,
         email,
-        role,
         password
     });
 
@@ -20,7 +19,6 @@ exports.registerCustomer = catchAsyncErrors( async(req,res,next)=>{
         success: true,
         name,
         email,
-        role,
         token
     })
 })
@@ -53,10 +51,8 @@ exports.loginCustomer = catchAsyncErrors(async(req,res,next)=>{
 exports.requireLogin = (req, res, next) => {
     try{
         const token = req.headers.authorization.split(" ")[1];
-        console.log('token : '+JSON.stringify(token))
         const customer = jwt.verify(token, process.env.JWT_SECRET)
         req.customer = customer;
-        console.log('Customer : ',customer)
         next();
     }catch(error){
         console.log('Error : ')
