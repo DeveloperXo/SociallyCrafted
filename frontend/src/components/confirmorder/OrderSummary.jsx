@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 function OrderSummary(props) {
   const address = useSelector((state) => state.orderDetails.address)
-  console.log('990',address)
+  console.log('990', address)
   // let history = useNavigate();
   const dispatch = useDispatch();
 
@@ -15,15 +15,14 @@ function OrderSummary(props) {
     let productsTotalPrice = 0;
     let shippingCharges = 120;
     let subTotal = 0;
-      props.products.map((product) => {
-        for (let i = 0; i < product.qty; i++) {
-          productsTotalPrice += product.price;
-        }
-      })
-      subTotal = shippingCharges + productsTotalPrice;
-      return { productsTotalPrice, shippingCharges, subTotal };
+    props.products.map((product) => {
+      for (let i = 0; i < product.qty; i++) {
+        productsTotalPrice += product.price;
+      }
+    })
+    subTotal = shippingCharges + productsTotalPrice;
+    return { productsTotalPrice, shippingCharges, subTotal };
   }
-<<<<<<< HEAD
 
   const handlePlaceOrder = () => {
     let totalAmount = getPrice().subTotal;
@@ -31,33 +30,33 @@ function OrderSummary(props) {
       productId: product._id,
       payablePrice: product.price,
       purchasedQty: product.qty
-   }));
-   if(address){
-     const payload = {
-      address: address,
-      totalAmount,
-      items,
-      paymentStatus: 'pending',
-      paymentType: 'cod'
-     }
-     console.log('payload', payload)
-     dispatch(addOrder(payload))
-   }
-   else{
-    alert('Please enter your address')
-   }
-   //  history('/orders/addOrder')
+    }));
+    if (address) {
+      const payload = {
+        address: address,
+        totalAmount,
+        items,
+        paymentStatus: 'pending',
+        paymentType: 'cod'
+      }
+      console.log('payload', payload)
+      dispatch(addOrder(payload))
+    }
+    else {
+      alert('Please enter your address')
+    }
+    //  history('/orders/addOrder')
   }
   const [pMethod, setPMethod] = useState('cod')
   const handlePaymentMethod = (event) => {
     setPMethod(event.target.id)
     event.target.checked = true
     console.log('event', pMethod)
-=======
-  function done(){
-    alert("Order placed successfully!!");
->>>>>>> add25f515179c0cf91b47e9c37ed6fecbf52cb78
   }
+  function done() {
+    alert("Order placed successfully!!");
+  }
+
   return (
     <div style={{ padding: "20px" }}>
       <h3 className='text-center mb-3'>Order Summary</h3>
@@ -89,7 +88,7 @@ function OrderSummary(props) {
         />
       </div>
       <div style={{ display: "flex", "justify-content": "center" }}>
-        <Button className='mt-5' onClick={done} style={{
+        <Button className='mt-5' style={{
           borderRadius: "0",
           backgroundImage:
             "linear-gradient(96.83deg, #174066 6.48%, #00D1FF 162.22%)",
@@ -105,4 +104,4 @@ function OrderSummary(props) {
   )
 }
 
-export default OrderSummary
+export default OrderSummary;

@@ -34,7 +34,7 @@ function App() {
 
   useEffect(() => {
     dispatch(updateCart())
-  })
+  }, [])
 
 
   return (
