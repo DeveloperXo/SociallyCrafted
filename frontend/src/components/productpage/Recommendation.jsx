@@ -87,12 +87,12 @@ function Recommendation() {
                     </Stack>
                   </Link>
                 </div>
-              </Col>
-            ))}
+              </Col> 
+            ))}  
         </Row>
-      </Container>
+      </Container> 
     </>
   );
-}
+} 
 
-export default Recommendation;
+export default Recommendation; 

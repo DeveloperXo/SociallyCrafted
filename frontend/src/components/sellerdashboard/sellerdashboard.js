@@ -5,6 +5,9 @@ import { useSelector } from "react-redux";
 import { isSellerCheck } from "../../actions/sellerAction";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import Totals from "./Totals";
+import Revenue from "./Revenue";
+import TopProducts from "./TopProducts";
 export default function SellerDashboard(params) {
     const dispatch = useDispatch();
     const seller = JSON.parse(localStorage.getItem('seller'))
@@ -24,7 +27,10 @@ export default function SellerDashboard(params) {
         <br /><br />
         <br /><br />
         <Container> 
-        {!sellerAuth?<SellerAuth />: <>Welcome ADMIN - {seller.name.toUpperCase()}</>}
+        {!sellerAuth?<SellerAuth />: <></>}
+        <Totals/>
+        <Revenue/>
+        <TopProducts/>
         </Container>
         </>
     )
