@@ -126,7 +126,7 @@ export default function ProductPage() {
           </Col>
         </Row>
       </div>
-      {product.numOfReviews === 0 ?   <br/> : <Recommendation />}
+      {/* {product.numOfReviews === 0 ?   <br/> : <Recommendation />} */}
       <FollowingSellers/>
     </>
   );

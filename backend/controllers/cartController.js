@@ -21,7 +21,6 @@ exports.addItemToCart = (req, res) => {
                 req.body.cartItems.forEach((cartItem) => {
                     const product = cartItem.product;
 
-                    console.log('qty from backend', cartItem.quantity)
                     const item = cart.cartItems.find(c => String(c.product) == String(product._id))
                     let condition, update;
 

@@ -1,6 +1,6 @@
 import { sellerConstants } from "../constants/sellerConstants";
 
-export const sellerReducer = (state = {user: {}}, action) => {
+export const sellerReducer = (state = {seller: {}}, action) => {
     switch (action.type){
         case sellerConstants.SELLER_LOGIN_REQUEST:
         case sellerConstants.SELLER_REGISTER_REQUEST:
@@ -16,7 +16,7 @@ export const sellerReducer = (state = {user: {}}, action) => {
             loading: false,
             isAuthenticated: true, // to allow customer actions
             sellerAuth: true, // to allow seller actions
-            user: action.payload,
+            seller: action.payload
         };
 
         case sellerConstants.SELLER_LOGOUT_SUCCESS:
@@ -48,6 +48,16 @@ export const sellerReducer = (state = {user: {}}, action) => {
             ...state,
             error: null,
         };
+
+        case sellerConstants.GET_SELLER_DETAILS_SUCCESS:
+            return{
+                seller: action.payload
+            };
+
+        case sellerConstants.GET_FOLLOWING_PRODUCTS:
+            return {
+                fProducts: [action.payload]
+            }
 
         default:
         return state;

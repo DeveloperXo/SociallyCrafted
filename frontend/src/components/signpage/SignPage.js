@@ -7,6 +7,8 @@ import CustomerForm from "./CustomerForm";
 import SellerForm from "./SellerForm";
 import customerHeroImage from "../../Images/customer-hero-image.png";
 import sellerHeroImage from "../../Images/seller-hero-image.png";
+import SellerAuth from "../sellerdashboard/SellerAuth";
+
 
 export default function SignPage(params) {
   return (
@@ -42,7 +44,7 @@ export default function SignPage(params) {
            alt='hero' />
           </Col>
           <Col lg={6} md={6} sm={10}>
-          <SellerForm />
+          <SellerAuth />
           </Col>
         </Row>
       </Container>

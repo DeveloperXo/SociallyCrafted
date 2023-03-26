@@ -13,13 +13,8 @@ const sellerSchema = new mongoose.Schema({
     password:{
         type:String,
         select: false
-    }, 
-    role : {
-        type: String,
-        enum: ['customer', 'admin', 'seller'],
-        default: 'seller'
     }
-})
+}, { strict: false })
 
 sellerSchema.pre("save", async function(next){
     if(!this.isModified("password")){
