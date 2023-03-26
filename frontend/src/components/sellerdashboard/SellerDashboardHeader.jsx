@@ -6,7 +6,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 
 export default function SellerDashboardHeader(params) {
   return (
-        <Stack className="sellerHeader" direction="horizontal" style={{"z-index":10}}>
+        <Stack className="sellerHeader" direction="horizontal" style={{position:"absolute","z-index":10}}>
             <div>
           <img className="logo" src={logo} alt="logo" />
           </div>
