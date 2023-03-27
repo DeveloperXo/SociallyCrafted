@@ -13,8 +13,6 @@ function ConfirmOrder() {
 
   const singleProduct = useSelector((state) => state.checkout)
   const { payload } = useSelector((state) => state.checkout.checkoutProducts);
-  const address = useSelector((state) => state.orderDetails)
-  console.log('address----', address)
   const getProducts = () => {
     let products = [];
     Object.keys(payload).map((key) => {

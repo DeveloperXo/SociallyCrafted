@@ -1,5 +1,7 @@
 import axios from 'axios';
+import { UNSAFE_LocationContext } from 'react-router-dom';
 import { sellerConstants } from '../constants/sellerConstants';
+import { UPDATE_USER_SUCCESS, LOGIN_SUCCESS } from '../constants/userConstants';
 
 export const sellerLogin = (email, password) => async (dispatch) => {
     try{
@@ -65,6 +67,8 @@ export const addFollower = (byFollowId, toFollowId) => async (dispatch) => {
         const query = {byFollowId, toFollowId}
         const config = { headers: { "Content-Type": "application/json" } };
         const { data } = await axios.post(`http://localhost:4000/seller/addFollower`, query, config);
+        dispatch({type: LOGIN_SUCCESS, payload: data.updateUser})
+        localStorage.setItem('user', JSON.stringify(data.updateUser));
     }catch(error){
         console.log(error)
     }

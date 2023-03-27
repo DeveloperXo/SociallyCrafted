@@ -18,7 +18,6 @@ export const addOrder = (payload) => {
         console.log('Action payload', payload.items[0])
       const res = await axios.post(`http://localhost:4000/orders/addOrder`, payload, config);
       dispatch({ type: ADD_USER_ORDER_REQUEST });
-      console.log('ressss', res);
       if (res.status === 201) {
         const { order } = res.data;
         dispatch({

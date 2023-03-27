@@ -38,6 +38,7 @@ import {
   USER_DETAILS_REQUEST,
   USER_DETAILS_SUCCESS,
   USER_DETAILS_FAIL,
+  IS_LOGGED_IN,
   CLEAR_ERRORS,
 } from "../constants/userConstants";
 
@@ -96,6 +97,14 @@ export const userReducer = (state = { user: {} }, action) => {
         ...state,
         error: null,
       };
+
+      case IS_LOGGED_IN:
+        return {
+          ...state,
+          loading: false,
+          isAuthenticated: true,
+          payload: action.payload
+        }
 
     default:
       return state;

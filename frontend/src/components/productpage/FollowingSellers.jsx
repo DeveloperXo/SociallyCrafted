@@ -13,7 +13,13 @@ function FollowingSellers() {
   const dispatch = useDispatch();
   const { fProducts } = useSelector((state => state.seller))
   let products = [];
-  const following = JSON.parse(localStorage.getItem('user')).following;
+  const user = useSelector((state => state.user));
+  let following;
+  if(user.user.following){
+    following = user.user.following;
+  }else if(JSON.parse(localStorage.getItem('user')).following){
+    following = JSON.parse(localStorage.getItem('user')).following
+  }
 
   useEffect(() => {
     if (following) {

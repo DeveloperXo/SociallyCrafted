@@ -38,7 +38,6 @@ exports.loginCustomer = catchAsyncErrors(async(req,res,next)=>{
     }
 
     if(customer){
-        const { _id, name, email, role } = customer;
         const token = customer.getJWTToken();
         res.status(200).json({
             success: true,
@@ -55,9 +54,8 @@ exports.requireLogin = (req, res, next) => {
         req.customer = customer;
         next();
     }catch(error){
-        console.log('Error : ')
-        console.log(error)
         res.status(401).json({
+            success: false,
             message: 'Authentication failed - Invalid token'
         })
     }

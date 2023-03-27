@@ -47,7 +47,6 @@ exports.loginSeller = catchAsyncErrors(async(req,res,next)=>{
 
 exports.getSellerDetails = catchAsyncErrors(async(req, res, next) => {
     const  id  = req.params.id;
-    console.log('id', req.body)
     const seller = await Seller.findById(id);
     if( !seller ){
         return next(new ErrorHandler("Invalid Seller Id"))
@@ -63,12 +62,11 @@ exports.getSellerDetails = catchAsyncErrors(async(req, res, next) => {
 
 exports.addFollower = catchAsyncErrors(async(req, res, next) => {
     let byFollowId = { _id: req.body.byFollowId }
-    console.log('by', byFollowId)
     const toFollowId = {_id: req.body.toFollowId}
-    console.log('to', toFollowId)
-    // const update = {"$addToSet": {"followers": byFollowId}}
+
     const sellerUpdate = {"$addToSet": {"followers": byFollowId }}
     const customerUpdate = {"$addToSet": {"following": toFollowId}}
+    
     const toFollow = await Seller.findOneAndUpdate( toFollowId, sellerUpdate, { 
         returnNewDocument: true,
         new: true,
@@ -81,11 +79,14 @@ exports.addFollower = catchAsyncErrors(async(req, res, next) => {
         strict: false
     })
 
+    const updateUser = await Customer.findById(byFollowId)
+
     if( !toFollowId ){ return new ErrorHandler('Something went wrong...')}
 
     res.status(200).json({
         success: true,
         toFollow,
-        byFollow
+        byFollow,
+        updateUser
     })
 })

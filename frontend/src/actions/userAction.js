@@ -34,6 +34,7 @@ import {
     USER_DETAILS_REQUEST,
     USER_DETAILS_SUCCESS,
     USER_DETAILS_FAIL,
+    IS_LOGGED_IN,
     CLEAR_ERRORS,
     
   } from "../constants/userConstants";
@@ -51,6 +52,7 @@ export const login = (email, password) => async (dispatch) => {
       )
       const token = data.token
       let userArray = [];
+      console.log('customer', data.customer)
       userArray.push(JSON.stringify(data.customer));
       localStorage.setItem('token', token)
       localStorage.setItem('user', userArray);
@@ -88,7 +90,7 @@ export const login = (email, password) => async (dispatch) => {
       }
       else{
         dispatch({
-          type : LOGIN_SUCCESS,
+          type : IS_LOGGED_IN,
           payload : token, user
         })
       }
