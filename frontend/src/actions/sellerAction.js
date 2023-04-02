@@ -40,14 +40,16 @@ export const clearErrors = () => async (dispatch) => {
   };
 
 
-export const isSellerCheck = (dispatch) => {
-    const sellerToken = localStorage.getItem('sellerToken');
-    const seller = JSON.parse(localStorage.getItem('seller'))
-    if(sellerToken && seller){
-        dispatch({type: sellerConstants.SELLER_LOGIN_SUCCESS, payload: seller})
-    }
-    else{
-        dispatch({ type: sellerConstants.SELLER_LOGIN_FAILURE, payload: 'Filed to login' });
+export const isSellerCheck = () => {
+    return async ( dispatch ) => {
+        const sellerToken = localStorage.getItem('sellerToken');
+        const seller = JSON.parse(localStorage.getItem('seller'))
+        if(sellerToken && seller){
+            dispatch({type: sellerConstants.SELLER_LOGIN_SUCCESS, payload: seller})
+        }
+        else{
+            dispatch({ type: sellerConstants.SELLER_LOGIN_FAILURE, payload: 'Filed to login' });
+        }
     }
 }
 

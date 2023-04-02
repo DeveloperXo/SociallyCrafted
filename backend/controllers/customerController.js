@@ -50,6 +50,7 @@ exports.loginCustomer = catchAsyncErrors(async(req,res,next)=>{
 exports.requireLogin = (req, res, next) => {
     try{
         const token = req.headers.authorization.split(" ")[1];
+        console.log(token)
         const customer = jwt.verify(token, process.env.JWT_SECRET)
         req.customer = customer;
         next();

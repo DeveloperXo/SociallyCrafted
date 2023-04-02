@@ -5,7 +5,8 @@ import {
     ADD_USER_ORDER_FAILURE,
     GET_USER_ORDER_REQUEST,
     GET_USER_ORDER_SUCCESS,
-    GET_USER_ORDER_FAILURE
+    GET_USER_ORDER_FAILURE,
+    GET_USER_ORDERS
 } from '../constants/userConstants'
 import axios from "axios";
 
@@ -15,7 +16,7 @@ export const addOrder = (payload) => {
     try {
         const token = localStorage.getItem('token');
         const config = { headers: { "Content-Type": "application/json", "Authorization": `Bearer, ${token}` } };
-        console.log('Action payload', payload.items[0])
+        console.log('Action payload', payload)
       const res = await axios.post(`http://localhost:4000/orders/addOrder`, payload, config);
       dispatch({ type: ADD_USER_ORDER_REQUEST });
       if (res.status === 201) {
@@ -25,7 +26,7 @@ export const addOrder = (payload) => {
         });
         dispatch({
           type: ADD_USER_ORDER_SUCCESS,
-          payload: { order },
+          payload: { payload },
         });
         // const {
         //   address: { address },
@@ -48,13 +49,13 @@ export const addOrder = (payload) => {
   };
 };
 
-export const getOrders = () => {
+export const getOrders = (token) => {
   return async (dispatch) => {
     try {
-      const res = await axios.get(`/getOrders`);
+      const config = { headers: {"Content-type": "application/json", "Authorization": `Bearer, ${token}`} }
+      const res = await axios.get(`http://localhost:4000/orders/getOrders`, config);
       dispatch({ type: GET_USER_ORDER_REQUEST });
       if (res.status === 200) {
-        console.log(res);
         const { orders } = res.data;
         dispatch({
           type: GET_USER_ORDER_SUCCESS,

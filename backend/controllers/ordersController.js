@@ -38,9 +38,10 @@ exports.addOrder = (req, res) => {
 };
 
 exports.getOrders = (req, res) => {
-  ordersModel.find({ customer: req.customer._id })
+  console.log('id', req.customer)
+  ordersModel.find({ customer: req.customer.id })
     .select("_id paymentStatus paymentType orderStatus items")
-    .populate("items.productId", "_id name productPictures")
+    .populate("items.productId", "_id name images")
     .exec((error, orders) => {
       if (error) return res.status(400).json({ error });
       if (orders) {
@@ -48,4 +49,3 @@ exports.getOrders = (req, res) => {
       }
     });
 };
-

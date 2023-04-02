@@ -1,6 +1,6 @@
 import SellerDashboardHeader from "./SellerDashboardHeader";
 import Container from "react-bootstrap/esm/Container";
-import SellerAuth from "./SellerAuth";
+// import SellerAuth from "./SellerAuth";
 import { useSelector } from "react-redux";
 import { isSellerCheck } from "../../actions/sellerAction";
 import { useEffect } from "react";
@@ -12,27 +12,26 @@ export default function SellerDashboard(params) {
     const dispatch = useDispatch();
     const seller = JSON.parse(localStorage.getItem('seller'))
     const { error, sellerAuth } = useSelector((state) => state.seller);
-    console.log('sellerAuth',sellerAuth, seller)
+    console.log('sellerAuth', sellerAuth, seller)
     useEffect(() => {
-        if(sellerAuth){
+        if (sellerAuth) {
             console.log('Good - Seller Dashboard')
         }
-        else{
+        else {
             dispatch(isSellerCheck)
         }
     }, [sellerAuth])
-    return ( 
+    return (
         <>
-        <SellerDashboardHeader/>
-        <br /><br />
-        <br /><br />
-        <Container> 
-        {!sellerAuth?<SellerAuth />: <></>}
-        <Totals/>
-        <Revenue/>
-        <TopProducts/>
-        </Container>
+            <SellerDashboardHeader />
+            <br /><br />
+            <br /><br />
+            <Container>
+                <Totals />
+                <Revenue />
+                <TopProducts />
+            </Container>
         </>
     )
-    
+
 }

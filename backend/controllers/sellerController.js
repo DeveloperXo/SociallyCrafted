@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const Seller = require('../models/sellerModel');
 const Product = require('../models/productModel')
 const Customer = require('../models/customerModel')
+const jwt = require('jsonwebtoken');
 
 exports.registerSeller = catchAsyncErrors( async(req,res,next)=>{
     const {name, email, password} = req.body;
@@ -27,7 +28,6 @@ exports.loginSeller = catchAsyncErrors(async(req,res,next)=>{
     
     const {email,password} = req.body;
     const seller = await Seller.findOne({email}).select("+password");
-    console.log('seller',seller);
     if(!seller){
         return next(new ErrorHandler("Invalid email or password",401))
     }
@@ -44,6 +44,19 @@ exports.loginSeller = catchAsyncErrors(async(req,res,next)=>{
         seller
     })
 })
+exports.requireSellerLogin = (req, res, next) => {
+    try{
+        const token = req.headers.authorization.split(" ")[1];
+        const seller = jwt.verify(token, process.env.JWT_SECRET)
+        req.seller = seller;
+        next();
+    }catch(error){
+        res.status(401).json({
+            success: false,
+            message: 'Authentication failed - Invalid seller token'
+        })
+    }
+}
 
 exports.getSellerDetails = catchAsyncErrors(async(req, res, next) => {
     const  id  = req.params.id;

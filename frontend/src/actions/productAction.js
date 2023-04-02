@@ -7,13 +7,13 @@ import {
   PRODUCT_DETAILS_REQUEST,
   PRODUCT_DETAILS_FAIL,
   PRODUCT_DETAILS_SUCCESS,
-  /*
-  ADMIN_PRODUCT_REQUEST,
-  ADMIN_PRODUCT_SUCCESS,
-  ADMIN_PRODUCT_FAIL,
   NEW_PRODUCT_REQUEST,
   NEW_PRODUCT_SUCCESS,
   NEW_PRODUCT_FAIL,
+/*
+  ADMIN_PRODUCT_REQUEST,
+  ADMIN_PRODUCT_SUCCESS,
+  ADMIN_PRODUCT_FAIL,
   UPDATE_PRODUCT_REQUEST,
   UPDATE_PRODUCT_SUCCESS,
   UPDATE_PRODUCT_FAIL,
@@ -89,3 +89,17 @@ export const getProductDetails = (id) => async (dispatch) => {
 export const clearErrors = () => async (dispatch) => {
   dispatch({ type: CLEAR_ERRORS });
 };
+
+// adding new products 
+export const addProduct = (product) => async (dispatch) => {
+  try{
+    dispatch({type: NEW_PRODUCT_REQUEST})
+    const token = localStorage.getItem('sellerToken')
+    const config = { headers: { "Content-Type": "application/json", "Authorization": `Bearer, ${token}` } };
+    const { data } = await axios.post(`http://localhost:4000/product/new`, product, config);
+    dispatch({type: NEW_PRODUCT_SUCCESS, payload: data.product})
+  }catch(error){
+    console.log(error)
+    dispatch({type: NEW_PRODUCT_FAIL, payload: error})
+  }
+}

@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 function OrderSummary(props) {
   const address = useSelector((state) => state.orderDetails.address)
-  // let history = useNavigate();
+  let history = useNavigate();
   const dispatch = useDispatch();
 
   const getPrice = () => {
@@ -40,6 +40,7 @@ function OrderSummary(props) {
       }
       console.log('payload', payload)
       dispatch(addOrder(payload))
+      history('/profile')
     }
     else {
       alert('Please enter your address')
